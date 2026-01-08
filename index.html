@@ -97,6 +97,21 @@ border-radius:20px;
 font-size:13px;
 }
 
+/* BOTÓN ACTIVAR SONIDO */
+.boton-sonido{
+display:block;
+margin:15px auto 0;
+padding:10px 20px;
+font-size:16px;
+border:none;
+border-radius:8px;
+background:#ff6f91;
+color:white;
+cursor:pointer;
+}
+
+.boton-sonido:hover{background:#ff4971}
+
 /* CONTADOR */
 .contador{
 margin:14px 0 6px;
@@ -198,12 +213,13 @@ y por ser parte de mi mundo 🤍</p>
 </div>
 
 <!-- DERECHA -->
-<div class="video" onclick="activarSonido()">
+<div class="video">
 <iframe id="yt"
 src="https://www.youtube.com/embed/p9Cqv2F84h4?autoplay=1&mute=1&loop=1&playlist=p9Cqv2F84h4&playsinline=1"
 allow="autoplay; encrypted-media"
 allowfullscreen></iframe>
 <div class="tap">🔊 Toca para activar sonido</div>
+<button class="boton-sonido" onclick="activarSonido()">Activar Sonido 💜</button>
 </div>
 
 </div>
@@ -243,7 +259,7 @@ const iframe=document.getElementById("yt");
 iframe.src=iframe.src.replace("mute=1","mute=0");
 if(navigator.vibrate)navigator.vibrate([120,80,120]);
 }
-  
+
 // TE AMO
 setTimeout(()=>{
 document.getElementById("teamo").style.opacity=1;
