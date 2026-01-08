@@ -10,172 +10,244 @@
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
-background:linear-gradient(180deg,#3a0066,#12001f);
-color:white;
-height:100vh;
+font-family:'Segoe UI',sans-serif;
+background:radial-gradient(circle at top,#4b0a82,#14001f);
+color:#fff;
 overflow:hidden;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
 }
 
-#app{
+.contenedor{
 width:100%;
-max-width:420px;
-height:100%;
-padding:14px;
-display:flex;
-flex-direction:column;
-justify-content:space-between;
-text-align:center;
+max-width:1300px;
+padding:20px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+align-items:center;
 }
 
 /* FOTO */
 .foto{
+width:200px;
+padding:10px;
+border-radius:26px;
+background:linear-gradient(135deg,#ffb3ff,#c77dff,#6a0dad);
+box-shadow:0 0 45px rgba(199,125,255,.95);
 margin:auto;
-width:160px;
-padding:8px;
-border-radius:22px;
-background:linear-gradient(135deg,#ffb6ff,#9d4edd);
-box-shadow:0 0 30px rgba(200,120,255,.9);
 }
 
 .foto img{
 width:100%;
-border-radius:18px;
+border-radius:20px;
+}
+
+/* PLAYLIST */
+.playlist{
+margin-top:14px;
+display:inline-block;
+padding:12px 22px;
+border-radius:40px;
+background:linear-gradient(135deg,#1DB954,#1ed760);
+color:#000;
+font-weight:700;
+text-decoration:none;
 }
 
 /* CARTA */
 .carta{
-margin-top:14px;
+margin-top:20px;
 background:rgba(255,255,255,.12);
-padding:14px;
-border-radius:18px;
-font-size:14px;
-line-height:1.5;
+padding:20px;
+border-radius:22px;
+font-size:15px;
+line-height:1.6;
 }
 
-/* BOTÓN */
-.boton{
-margin:16px auto;
-padding:14px 26px;
-font-size:16px;
-border-radius:40px;
+/* VIDEO */
+.video{
+position:relative;
+width:100%;
+aspect-ratio:16/9;
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 0 40px rgba(200,120,255,.8);
+}
+
+.video iframe{
+width:100%;
+height:100%;
 border:none;
-background:linear-gradient(135deg,#ffb6ff,#9d4edd);
-color:#2a003d;
-font-weight:bold;
-cursor:pointer;
+}
+
+.video .tap{
+position:absolute;
+bottom:10px;
+right:10px;
+background:rgba(0,0,0,.55);
+padding:6px 12px;
+border-radius:20px;
+font-size:13px;
+}
+
+/* CONTADOR */
+.contador{
+margin:14px 0 6px;
+text-align:center;
+color:#e6ccff;
 }
 
 /* TE AMO */
 #teamo{
-font-size:26px;
-font-weight:bold;
+text-align:center;
+margin-top:6px;
+font-size:34px;
+font-weight:900;
 opacity:0;
-transition:.4s;
+transition:.4s ease;
 }
 
 #teamo span{
-display:block;
-font-size:34px;
+display:inline-block;
 margin-top:6px;
-color:#ffb6ff;
-text-shadow:0 0 15px #ffb6ff;
+padding:6px 18px;
+font-size:42px;
+background:linear-gradient(135deg,#ffb6ff,#c77dff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 20px rgba(255,182,255,.7);
+}
+
+/* PARTÍCULAS */
+.particula{
+position:fixed;
+left:50%;
+top:65%;
+font-size:22px;
+pointer-events:none;
+z-index:9999;
+animation:boom 1.6s ease-out forwards;
+}
+
+@keyframes boom{
+to{
+transform:translate(calc(-50% + var(--x)),calc(var(--y))) scale(.2);
+opacity:0;
+}
 }
 
 /* CORAZONES */
-.corazon{
+.heart{
 position:fixed;
-font-size:22px;
-pointer-events:none;
-animation:explode 1.6s ease-out forwards;
+bottom:-20px;
+color:#b388ff;
+font-size:18px;
+animation:subir linear forwards;
+z-index:1;
 }
 
-@keyframes explode{
-to{
-transform:
-translate(
-calc(var(--x)),
-calc(var(--y))
-)
-scale(0.2);
-opacity:0;
+@keyframes subir{
+to{transform:translateY(-110vh);opacity:0;}
 }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 
 <body>
 
-<div id="app">
+<div class="contenedor" id="pantalla">
 
-<div>
+<div class="grid">
+
+<!-- IZQUIERDA -->
+<div style="text-align:center">
 <div class="foto">
 <img src="foto.png">
 </div>
 
+<a class="playlist" href="https://open.spotify.com/playlist/1CylYT2jwUwi0QQQjG8ScU" target="_blank">
+💜 Nuestra playlist 💜
+</a>
+
 <div class="carta">
-<p>Feliz aniversario, mi cielita 🤍</p>
-<p>
+<p>Feliz aniversario, mi cielita 🤍  
 Puede que estemos desde la distancia,
-pero mi amor por ti es real.
+pero mi amor por ti es real
+y nace de todo lo que compartimos día a día.</p>
+
+<p>Me importas más de lo que a veces puedo expresar.
+Tu presencia, incluso a través de una pantalla,
+hace mis días más tranquilos,
+más felices, más míos.</p>
+
+<p>Feliz primer año, mi vida.
 Gracias por estar, por sentir conmigo
-y por ser parte de mi mundo.
-</p>
-<p>
-Te amo mucho,
-feliz primer año mi vida 💜
-</p>
+y por ser parte de mi mundo 🤍</p>
 </div>
 </div>
 
-<button class="boton" id="btn">
-💜 Toca aquí mi cielita 💜
-</button>
+<!-- DERECHA -->
+<div class="video" onclick="activarSonido()">
+<iframe id="yt"
+src="https://www.youtube.com/embed/p9Cqv2F84h4?autoplay=1&mute=1&loop=1&playlist=p9Cqv2F84h4&playsinline=1"
+allow="autoplay; encrypted-media"
+allowfullscreen></iframe>
+<div class="tap">🔊 Toca para activar sonido</div>
+</div>
+
+</div>
+
+<div class="contador" id="contador"></div>
 
 <div id="teamo">
-TE AMO
+TE AMO <br>
 <span>MI CIELITA 💜</span>
 </div>
 
 </div>
 
-<!-- AUDIO LOCAL (NO YOUTUBE) -->
-<audio id="musica" preload="auto">
-<source src="musica.mp3" type="audio/mpeg">
-</audio>
-
 <script>
-const btn=document.getElementById("btn");
-const musica=document.getElementById("musica");
-const teamo=document.getElementById("teamo");
-
-btn.addEventListener("click",accion);
-btn.addEventListener("touchstart",accion);
-
-function accion(){
-musica.play().catch(()=>{});
-teamo.style.opacity=1;
-explosion();
-if(navigator.vibrate) navigator.vibrate([120,80,120,200]);
-btn.style.display="none";
+// CONTADOR
+const inicio=new Date("2025-01-09");
+function contador(){
+const dias=Math.floor((new Date()-inicio)/(1000*60*60*24));
+document.getElementById("contador").innerHTML=
+"💜 Llevamos juntos "+dias+" días 💜";
 }
+contador();setInterval(contador,1000);
 
-function explosion(){
-for(let i=0;i<60;i++){
-const c=document.createElement("div");
-c.className="corazon";
-c.innerText="💜";
-c.style.left="50%";
-c.style.top="60%";
-c.style.setProperty("--x",(Math.random()*300-150)+"px");
-c.style.setProperty("--y",(Math.random()*-300-80)+"px");
-document.body.appendChild(c);
-setTimeout(()=>c.remove(),1600);
+// CORAZONES
+setInterval(()=>{
+const h=document.createElement("div");
+h.className="heart";h.innerText="💜";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(5+Math.random()*4)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),9000);
+},200);
+
+// ACTIVAR SONIDO
+function activarSonido(){
+const iframe=document.getElementById("yt");
+iframe.src=iframe.src.replace("mute=1","mute=0");
+if(navigator.vibrate)navigator.vibrate([120,80,120]);
 }
-}
+  
+// TE AMO
+setTimeout(()=>{
+document.getElementById("teamo").style.opacity=1;
+},2000);
 </script>
 
 </body>
