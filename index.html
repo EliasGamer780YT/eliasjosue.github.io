@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi cielita 💜</title>
+
+<style>
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:'Segoe UI',sans-serif;
+background:radial-gradient(circle at top,#4b0a82,#14001f);
+color:#fff;
+overflow:hidden;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.contenedor{
+width:100%;
+max-width:1300px;
+padding:20px;
+}
+
+/* GRID */
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:30px;
+align-items:center;
+}
+
+/* FOTO */
+.foto{
+width:200px;
+padding:10px;
+border-radius:26px;
+background:linear-gradient(135deg,#ffb3ff,#c77dff,#6a0dad);
+box-shadow:0 0 45px rgba(199,125,255,.95);
+margin:auto;
+}
+
+.foto img{
+width:100%;
+border-radius:20px;
+}
+
+/* PLAYLIST */
+.playlist{
+margin-top:14px;
+display:inline-block;
+padding:12px 22px;
+border-radius:40px;
+background:linear-gradient(135deg,#1DB954,#1ed760);
+color:#000;
+font-weight:700;
+text-decoration:none;
+}
+
+/* CARTA */
+.carta{
+margin-top:20px;
+background:rgba(255,255,255,.12);
+padding:20px;
+border-radius:22px;
+font-size:15px;
+line-height:1.6;
+}
+
+/* VIDEO */
+.video{
+position:relative;
+width:100%;
+aspect-ratio:16/9;
+border-radius:24px;
+overflow:hidden;
+box-shadow:0 0 40px rgba(200,120,255,.8);
+}
+
+.video iframe{
+width:100%;
+height:100%;
+border:none;
+}
+
+.video .tap{
+position:absolute;
+bottom:10px;
+right:10px;
+background:rgba(0,0,0,.55);
+padding:6px 12px;
+border-radius:20px;
+font-size:13px;
+}
+
+/* CONTADOR */
+.contador{
+margin:14px 0 6px;
+text-align:center;
+color:#e6ccff;
+}
+
+/* TE AMO */
+#teamo{
+text-align:center;
+margin-top:6px;
+font-size:34px;
+font-weight:900;
+opacity:0;
+transition:.4s ease;
+}
+
+#teamo span{
+display:inline-block;
+margin-top:6px;
+padding:6px 18px;
+font-size:42px;
+background:linear-gradient(135deg,#ffb6ff,#c77dff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 20px rgba(255,182,255,.7);
+}
+
+/* PARTÍCULAS */
+.particula{
+position:fixed;
+left:50%;
+top:65%;
+font-size:22px;
+pointer-events:none;
+z-index:9999;
+animation:boom 1.6s ease-out forwards;
+}
+
+@keyframes boom{
+to{
+transform:translate(calc(-50% + var(--x)),calc(var(--y))) scale(.2);
+opacity:0;
+}
+}
+
+/* CORAZONES */
+.heart{
+position:fixed;
+bottom:-20px;
+color:#b388ff;
+font-size:18px;
+animation:subir linear forwards;
+z-index:1;
+}
+
+@keyframes subir{
+to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+.grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+
+<div class="contenedor" id="pantalla">
+
+<div class="grid">
+
+<!-- IZQUIERDA -->
+<div style="text-align:center">
+<div class="foto">
+<img src="foto.png">
+</div>
+
+<a class="playlist" href="https://open.spotify.com/playlist/1CylYT2jwUwi0QQQjG8ScU" target="_blank">
+💜 Nuestra playlist 💜
+</a>
+
+<div class="carta">
+<p>Feliz aniversario, mi cielita 🤍  
+Puede que estemos desde la distancia,
+pero mi amor por ti es real
+y nace de todo lo que compartimos día a día.</p>
+
+<p>Me importas más de lo que a veces puedo expresar.
+Tu presencia, incluso a través de una pantalla,
+hace mis días más tranquilos,
+más felices, más míos.</p>
+
+<p>Feliz primer año, mi vida.
+Gracias por estar, por sentir conmigo
+y por ser parte de mi mundo 🤍</p>
+</div>
+</div>
+
+<!-- DERECHA -->
+<div class="video" onclick="activarSonido()">
+<iframe id="yt"
+src="https://www.youtube.com/embed/p9Cqv2F84h4?autoplay=1&mute=1&loop=1&playlist=p9Cqv2F84h4&playsinline=1"
+allow="autoplay; encrypted-media"
+allowfullscreen></iframe>
+<div class="tap">🔊 Toca para activar sonido</div>
+</div>
+
+</div>
+
+<div class="contador" id="contador"></div>
+
+<div id="teamo">
+TE AMO <br>
+<span>MI CIELITA 💜</span>
+</div>
+
+</div>
+
+<script>
+// CONTADOR
+const inicio=new Date("2025-01-09");
+function contador(){
+const dias=Math.floor((new Date()-inicio)/(1000*60*60*24));
+document.getElementById("contador").innerHTML=
+"💜 Llevamos juntos "+dias+" días 💜";
+}
+contador();setInterval(contador,1000);
+
+// CORAZONES
+setInterval(()=>{
+const h=document.createElement("div");
+h.className="heart";h.innerText="💜";
+h.style.left=Math.random()*100+"vw";
+h.style.animationDuration=(5+Math.random()*4)+"s";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),9000);
+},200);
+
+// ACTIVAR SONIDO
+function activarSonido(){
+const iframe=document.getElementById("yt");
+iframe.src=iframe.src.replace("mute=1","mute=0");
+if(navigator.vibrate)navigator.vibrate([120,80,120]);
+}
+  
+// TE AMO
+setTimeout(()=>{
+document.getElementById("teamo").style.opacity=1;
+},2000);
+</script>
+
+</body>
+</html>
